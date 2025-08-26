@@ -1,0 +1,720 @@
+:root {
+  --bg1: #5423d1;
+  --bg2:  #7713CB;
+  --accent: #ffd33d;
+  --accent-2: #ff7bd8;
+  --white: #fff;
+  --card: #6b2bd6;
+  --glass: rgba(255, 255, 255, .12);
+  --shadow: 0 8px 24px rgba(0, 0, 0, .25);
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  background: radial-gradient(120% 120% at 50% 0%, var(--bg2), var(--bg1));
+  font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color: var(--white);
+}
+
+.phone {
+  width: 390px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  background: transparent;
+}
+
+.page {
+  padding: 8px 12px 120px;
+}
+
+/* Topbar */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  opacity: .95;
+}
+
+.back {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--glass);
+}
+
+.top-title {
+  font-weight: 600;
+}
+
+
+/* Rule button wrapper */
+.rule-btn {
+  position: absolute;
+  top: 35px;       /* adjust as needed */
+  right: 0 ;
+  display: inline-block;
+  text-decoration: none;
+               /* flush with right edge */
+  margin: 0;
+  padding: 0;
+  line-height: 0;       /* remove any text line-box */
+  z-index: 3;
+}
+
+/* Rule button image */
+.rule-img {
+  display: block;
+  width: 90px;     /* adjust to match your PNG size */
+  height: auto;
+}
+
+/* Rule text over the PNG */
+.rule-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;   /* text color – change if PNG is light */
+  pointer-events: none; /* so clicking still hits the link */
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 6px 0 12px;
+}
+
+.tabs .tab {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #9e63ff, #6a2dd9);
+  border: 2px solid #cda9ff22;
+  font-weight: 700;
+  font-size: 13px;
+  box-shadow: var(--shadow);
+}
+
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* helper */
+.note {
+  font-size: 11px;
+  text-align: center;
+  opacity: .9;
+}
+
+.hide-scroll {
+  scrollbar-width: none;
+}
+
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Demo footer gap */
+.spacer {
+  height: 60px;
+}
+
+/* Small phones */
+@media (max-width: 400px) {
+  .phone {
+    width: 100vw;
+  }
+}
+.banner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    position: relative;
+    padding: 0;           /* no inner gap */
+  margin: 0;
+}
+
+.banner-img {
+  width: 100%;
+  height: 60vh;
+  object-fit: cover;
+  display: block;
+}
+/* Rectangle container is the positioning context */
+.rect-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  display: inline-block;
+}
+
+/* Base rectangle */
+.rect-banner {
+  width: 100%;
+  height: 40vh;
+  display: block;
+}
+
+
+/* Hang the frame on the top-middle edge of the rectangle */
+.frame-box {
+  position: absolute;
+  left: 50%;
+  top: 0;                        
+  transform: translate(-50%, -50%); 
+  z-index: 3;                    
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;          
+}
+
+.frame-img {
+  width: 260px;                  
+  height: auto;
+  display: block;
+}
+
+.frame-text {
+  position: absolute;
+  font-weight: 700;
+  font-size: 16px; 
+      top: 40%;           
+  color: #fff;
+  text-align: center;
+  line-height: 1;
+}
+
+/* ——— TOP3 layout ——— */
+.top3-container {
+  position: absolute;           
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: flex-start;
+  width: 92%;
+  z-index: 5;
+}
+
+/* All three frames: same size */
+.main-frame {
+  position: relative;
+  width: 140px;                 /* set a uniform width */
+  height: 200px;                
+  text-align: center;
+}
+
+.frame-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Content positioning: use absolute coordinates so nothing drifts */
+.frame-content {
+  position: absolute;
+  inset: 0;
+}
+
+/* Circular frame: slightly overlapping but mostly inside */
+.circular-frame {
+  position: absolute;
+  left: 50%;
+  top: 12px;               /* More inward compared to 4px */
+  transform: translateX(-50%);
+  width: 90px;
+  height: 90px;
+}
+
+
+/* Circular border sits on top */
+.circular-border {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+/* User photo inside the circular border */
+.userphoto {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 76px;                  /* smaller than frame so it fits the ring */
+  height: 76px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 1;
+}
+/* User name text */
+.user-name {
+  margin-top: 105px;       /* pushes text below the circle */
+  font-size: 13px;         /* smaller text */
+  font-weight: 600;
+  text-align: center;
+  color: purple;
+}
+
+/* Smaller capsule, inside the frame */
+.main-frame .capsule {
+  position: absolute;
+  left: 50%;
+  top: 110px;                   
+  transform: translateX(-50%);
+  background: #46458b;
+  color: #000;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 999px;
+  line-height: 1.2;
+ margin-top: 14px; 
+}
+
+
+.main-frame .user-name,
+.main-frame .capsule {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.badge-box {
+  position: absolute;
+  top: 8px;   /* padding from top edge of rectangle */
+  left: 8px;  /* padding from left edge */
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 20; /* make sure it's above frames */
+}
+
+.badge-img {
+  width: 80px;   /* bigger size so it overlaps circular frame */
+  height: auto;
+}
+
+.badge-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* center inside png */
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  white-space: nowrap;
+}
+.star-list {
+  display: flex;
+  justify-content: space-between; /* push badges to take full width with spacing only at edges */
+  margin: 0 20px 15px;  /* space top + padding from start/end */
+}
+
+.star-badge {
+  position: relative;
+  flex: 1; /* each badge takes equal width */
+  margin: 0 2px; 
+}
+
+.star-badge img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.star-badge span {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 9px; /* smaller text */
+  font-weight: 200;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Toggle wrapper */
+.toggle-wrapper {
+  position: relative;
+  width: 220px; /* adjust according to your frame image */
+  height: 50px; /* adjust according to your frame image */
+   margin: 0 auto;  
+}
+
+/* Frame image */
+.toggle-frame {
+  width: 100%;
+  height: 90%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Toggle container over the frame */
+.toggle-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+  z-index: 2; /* above the frame */
+}
+
+/* Slider image */
+.toggle-indicator {
+  position: absolute;
+  top: 5px; /* adjust according to your frame */
+  left: 5px; /* initial position */
+ width: calc(50% - 10px); 
+  height: 40px;   
+  transition: left 0.3s;
+  z-index: 3; /* above everything */
+}
+
+/* Toggle options text */
+.toggle-option {
+  flex: 1;
+  text-align: center;
+  z-index: 4; /* above slider */
+  font-weight: 300;
+  color: #555;
+  user-select: none;
+  transition: color 0.3s;
+  font-size: 10px;
+}
+
+.toggle-option.active {
+  color: white;
+}
+
+
+
+
+    /* Main container with side gradient */
+    .container {
+        position: relative;
+        width: 95%;
+  max-width: 400px;
+  margin: 40px auto 20px auto;
+  border: 2px solid #FFD700;   /* slim golden border */
+  background: #6b2bd6;
+  padding: 20px 10px 20px 10px; 
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 5px;
+  z-index: 1;     
+   
+ 
+    }
+
+
+
+
+    /* Countdown box */
+    .countdown {
+       display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;         /* spacing between boxes */
+  margin: 5px auto; /* center horizontally */
+  max-width: 350px;  
+    }
+
+    .time-box {
+      width: 40px;      
+  height: 40px;     
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  font-weight: bold;
+  color: #fff;      /* text color */
+  background: url("images/countdown_box.png") no-repeat center;
+  background-size: contain; /* scale PNG to fit box */
+  border-radius: 8px; 
+    }
+.unit-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 4px;
+  text-align: center;
+}
+/* Colons between time boxes */
+.colon {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  margin: 0 2px;
+}
+
+
+.paragraph {
+  font-size: 10px; /* reduce from default size */
+  line-height: 1.4; /* optional: adjust spacing between lines */
+  color: #fff;      /* keep text color white or as needed */
+}
+
+
+
+
+
+    /* Cards */
+    .card {
+      background: linear-gradient(90deg, #a66bff, #6b2bd6);
+      border-radius: 15px;
+      padding: 15px;
+      margin: 15px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .rank {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 3px solid #ffd33d;
+    }
+
+    .points {
+      font-size: 16px;
+      background: #ffd33d;
+      color: black;
+      border-radius: 8px;
+      padding: 5px 10px;
+    }
+
+    .supporter {
+      background: #ff7bd8;
+      padding: 5px 10px;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+    .top-frame {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%); /* center + lift half above border */
+  z-index: 2; /* stay above border *ay above border */
+}
+
+.top-frame img {
+  width: 360px;  /* set based on your PNG size */
+  height: 400;
+  display: block;
+}
+
+
+
+.leader-card {
+  position: relative;
+  width: 100%;        /* take full width of container */
+  max-width: 600px;   /* but don’t grow too big */
+  margin: 4px auto;  /* equal left & right margin */
+  height: 110px;       /* smaller height */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;       /* inner spacing */
+  box-sizing: border-box;
+}
+
+
+/* Card frame background */
+.card-frame-below {
+  position: absolute;
+  width: 100%;   
+  height: 100%;
+   inset: 0; 
+   object-fit: fill;   /* stretch properly */
+  z-index: 0;
+}
+
+.left-section-below {
+  position: absolute;
+  left: 45px;              /* padding from left edge */
+  top: 50%;                /* move to vertical center */
+  transform: translateY(-50%);
+  text-align: center;
+  z-index: 2;
+}
+
+.crown {
+  width: 25px;             /* adjust to fit inside card */
+  display: block;
+  margin: 0 auto 5px;      /* space below crown before name */
+}
+
+.name-below_1 {
+  font-size: 6px;
+  color: white;
+  font-weight: bold;
+}
+
+
+/* Main user circular frame */
+
+.main-user-below {
+  position: absolute;
+  left: 90px;
+  top: 25px;
+  width: 50px;
+  height: 50px;
+}
+.circle-frame-below {
+  width: 55px;
+  height: 55px;
+  top: 0;
+  left: 0;
+   position: absolute;
+    z-index: 2; 
+}
+.user-img-below {
+  width: 41px;
+  height: 41px;
+  border-radius: 50%;
+ top: 5px;          /* centers inside the frame */
+  left: 5px;
+    object-fit: cover; 
+  position: absolute;
+  
+  z-index: 1;
+}
+.score-below {
+  position: absolute;
+  left: 140px;     /* adjust horizontally where you want */
+  top: 50%;        /* vertically center */
+  transform: translateY(-50%);
+  text-align: center;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;  /* stack children vertically */
+  align-items: center;     /* center them horizontally */
+}
+
+.star-below {
+  width: 50px;     /* adjust size */
+  margin-bottom: 3px;  /* space between star and capsule */
+}
+
+.capsule-below {
+  position: relative;
+  display: inline-block;
+}
+
+.capsule-img-below {
+  width: 80px;   /* fit inside card */
+}
+
+.score-text-below {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Supporter user */
+.supporter-below {
+  position: absolute;
+  right: 70px;  /* adjust spacing */
+  top: 20px;
+  width: 60px;
+  height: 60px;
+}
+.supporter-below .circle-frame-below {
+  width: 55px;
+  height: 55px;
+}
+.supporter-below .user-img-below {
+  width: 41px;
+  height: 41px;
+  border-radius: 50%;
+  top: 5px;
+  left: 5px;
+  position: absolute;
+}
+
+/* Supporter badge + name */
+.supporter-info-below {
+  position: absolute;
+  right: 20px;
+  top: 30px;
+  text-align: center;
+  z-index: 2;
+}
+.supporter-badge-below {
+  width: 50px; /* smaller badge */
+}
+.name-below {
+  margin-top: 2px;
+  font-size: 7px;
+  color: white;
+  font-weight: bold;
+} 
+.position-text{
+ font-size: 15px;
+ margin-bottom: 1px;
+}
+
+
+
+.bottom-frame {
+  position: absolute;         /* take out of normal flow */
+  bottom: -45px;              /* push down to overlap container edge */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100px;
+  background: url("images/bottom_border_frame.png") no-repeat center;
+  background-size: contain;
+  z-index: 2; /* appear above container */
+}
